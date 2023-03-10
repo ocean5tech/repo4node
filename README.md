@@ -1,53 +1,51 @@
-# repo4node
+# PoC
 
-# Ubuntu配置
+### react install
+1. https://learn.microsoft.com/en-us/windows/dev-environment/javascript/react-on-windows
+2. Open a terminal(Windows Command Prompt or PowerShell).
+3. Create a new project folder: mkdir ReactProjects and enter that directory: cd ReactProjects.
+4. npx create-react-app my-app
+5. cd my-app
+6. npm start
+7. When you're ready to deploy your web app to production, running npm run build will create a build of your app in the "build" folder. You can learn more in the Create React App User Guide.
 
+### node install
+1. https://learn.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-wsl
+2. Install WSL 2
+3. sudo apt update && sudo apt upgrade
+4. Open your Ubuntu command line，sudo apt-get install curl
+5. Install nvm, with: curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
+6. command -v nvm， if you receive 'command not found' or no response at all, close your current terminal, reopen it, and try again.
+7. nvm ls
+8. nvm install --lts
+9. npm --version
 
-sudo apt-get update
+### Podman - postgresql install
+1. sudo apt-get -y update
+2. sudo apt-get -y install podman
+3. podman pull docker.io/library/postgres
+4. mkdir /home/wuyang/postgres_docker
+5. podman run -dt --name my-postgres -e POSTGRES_PASSWORD=123456 -v "/home/wuyang/postgres_docker:/var/lib/postgresql/data:Z" -p 5432:5432 postgres
+6. podman exec -it my-postgres bash
+7. psql -U postgres
+8. \l
+9. create database testdb;
+10. \c testdb
+11. \d
 
-sudo apt-get upgrade
+# sample depolyment
 
-sudo apt install postgresql
+### backend
+https://github.com/bezkoder/node-express-sequelize-postgresql
+1. powershell: git clone https://github.com/bezkoder/react-typescript-api-call.git
+2. cd react-typescript-api-call
+3. npm install
+4. npm start
 
-cd /etc/postgresql/14/main
-
-sudo vi postgresql.conf
-
-edit -> listen_addresses = '*'
-
-
-cd /etc/postgresql/14/main
-sudo -u postgres psql template1
-  不好用就试试 sudo systemctl restart postgresql
-  不好用就试试 
-  sudo apt-get update
-  sudo apt-get install -yqq daemonize dbus-user-session fontconfig
-  sudo daemonize /usr/bin/unshare --fork --pid --mount-proc /lib/systemd/systemd --system-unit=basic.target
-  exec sudo nsenter -t $(pidof systemd) -a su - $LOGNAME
-
-
-ref:
-https://ubuntu.com/server/docs/databases-postgresql
-https://www.linuxtopic.com/2021/11/system-has-not-been-booted-with-systemd.html
-https://mehmetozanguven.github.io/container/2021/12/15/running-postgresql-with-podman.html
-
-改了下面的配置文件之后，podman search postgres才好用
-$ sudo vim /etc/containers/registries.conf
-unqualified-search-registries = ["registry.fedoraproject.org", "registry.access.redhat.com", "registry.centos.org", "docker.io"]
-
-
-sudo apt-get -y update
-sudo apt-get -y install podman
-
-数据库
-podman pull docker.io/library/postgres
-
- mkdir /home/wuyang/postgres_docker
- podman run -dt --name my-postgres -e POSTGRES_PASSWORD=123456 -v "/home/wuyang/postgres_docker:/var/lib/postgresql/data:Z" -p 5432:5432 postgres
-
-podman exec -it my-postgres bash
-psql -U postgres
-\l
-
-node安装
-https://platformengineer.com/podman-run-node-js-express-server/
+### frontend
+https://github.com/bezkoder/react-typescript-api-call
+1. git clone https://github.com/bezkoder/node-express-sequelize-postgresql.git
+2. cd node-express-sequelize-postgresql
+3. npm install
+4. edit db.config.js: password:123456
+5. node server.js
