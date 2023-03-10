@@ -1,6 +1,6 @@
 # PoC
 
-### react install
+### react install ： 直接安装到windows
 1. https://learn.microsoft.com/en-us/windows/dev-environment/javascript/react-on-windows
 2. Open a terminal(Windows Command Prompt or PowerShell).
 3. Create a new project folder: mkdir ReactProjects and enter that directory: cd ReactProjects.
@@ -9,7 +9,7 @@
 6. npm start
 7. When you're ready to deploy your web app to production, running npm run build will create a build of your app in the "build" folder. You can learn more in the Create React App User Guide.
 
-### node install
+### node install ：在wsl中node
 1. https://learn.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-wsl
 2. Install WSL 2
 3. sudo apt update && sudo apt upgrade
@@ -20,7 +20,7 @@
 8. nvm install --lts
 9. npm --version
 
-### Podman - postgresql install
+### Podman - postgresql install：在wsl安装podman，在podman中安装postgres
 1. sudo apt-get -y update
 2. sudo apt-get -y install podman
 3. podman pull docker.io/library/postgres
